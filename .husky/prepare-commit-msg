@@ -9,4 +9,5 @@ fi
 
 git-secrets --pre_commit_hook -- "$@"
 
-npx commitlint --edit $1
+git-secrets --pre_commit_hook -- "$@"
+
