@@ -35,7 +35,9 @@ function UpdatedAt() {
 }
 
 function DatabaseStatus() {
-  const { isLoading, data } = useSWR("/api/v1/status", fetchStatus);
+  const { isLoading, data } = useSWR("/api/v1/status", fetchStatus, {
+    refreshInterval: 2000,
+  });
 
   if (isLoading || !data) {
     return <div>Carregando...</div>;
