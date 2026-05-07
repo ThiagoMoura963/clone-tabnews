@@ -11,7 +11,7 @@ export default function StatusPage() {
     <>
       <h1>Status</h1>
       <UpdatedAt />
-      <DatabaseData />
+      <DatabaseStatus />
     </>
   );
 }
@@ -34,10 +34,12 @@ function UpdatedAt() {
   );
 }
 
-function DatabaseData() {
+function DatabaseStatus() {
   const { isLoading, data } = useSWR("/api/v1/status", fetchStatus);
 
-  if (isLoading || !data) return;
+  if (isLoading || !data) {
+    return <div>Carregando...</div>;
+  }
 
   const db = data.dependencies.database;
 
@@ -51,6 +53,10 @@ function DatabaseData() {
         maxWidth: "320px",
       }}
     >
+      <div style={{ marginBottom: "8px" }}>
+        <strong>Database</strong>
+      </div>
+
       <div>
         <strong>Versão:</strong> {db.version}
       </div>
